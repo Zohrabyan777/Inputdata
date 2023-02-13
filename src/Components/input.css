@@ -1,0 +1,36 @@
+.creat {
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: center;
+}
+.creat input,
+.creat textarea,
+.creat select {
+  width: 100%;
+  padding: 10px 6px;
+  display: block;
+  margin: 10px 0;
+}
+.creat label {
+  color: red;
+  text-align: left;
+  display: block;
+}
+.creat h2 {
+  color: red;
+  font-size: 20px;
+}
+form button {
+  padding: 6px 7px;
+  background-color: red;
+  border: none;
+}
+.check {
+  left: 4%;
+  position: relative;
+}
+.checked {
+  position: absolute;
+  top: -5%;
+  transform: translate(-53%, -40%);
+}
