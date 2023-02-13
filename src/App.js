@@ -1,32 +1,37 @@
 import "./App.css";
 import { useState } from "react";
 function App() {
-  const [input, setInput] = useState([{ id: 1, text: "" }]);
+  const [val, setval] = useState("");
+  const [input, setInput] = useState([{ id: 1, text: val }]);
+
   function changeHandler(e) {
-    return setInput((prev) => {
-      return [
-        ...prev,
-        {
-          id: Math.random().toLocaleString(),
-          text: e.target.value.trim(),
-        },
-      ];
-    });
+    return setval(e.target.value);
+  }
+
+  function submitHandler(e) {
+    {
+      e.preventDefault();
+      console.log(input);
+      setInput((prev) => {
+        return [
+          ...prev,
+          {
+            id: Math.random().toLocaleString(),
+            text: val,
+          },
+        ];
+      });
+      return setval("");
+    }
   }
 
   function deleteHandler(id) {
-    return input.map((todo) => id !== todo.id);
+    return setInput(input.filter((todo) => id !== todo.id));
   }
   return (
     <div className="container">
-      <form
-        className="form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(input);
-        }}
-      >
-        <input type="text" name="text" onChange={changeHandler} />
+      <form className="form" onSubmit={submitHandler}>
+        <input type="text" name="text" onChange={changeHandler} value={val} />
         <button className="btn" type="submit">
           Add new Todos
         </button>
@@ -34,7 +39,12 @@ function App() {
       {input.length &&
         input.map((todo) => {
           return (
-            <div className="todos__item" key={todo.id} id={todo.id}>
+            <div
+              className="todos__item"
+              key={todo.id}
+              id={todo.id}
+              onClick={() => deleteHandler(todo.id)}
+            >
               {todo.text}
             </div>
           );
